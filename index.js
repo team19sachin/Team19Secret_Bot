@@ -50,8 +50,8 @@ bot.action('verify', async (ctx) => {
                     parse_mode: "Markdown",
                     reply_markup: {
                         inline_keyboard: [
-                            [{ text: "🎮 Mines Hack", web_app: { url: "https://team19sachin.github.io/MinesPrediction/" } }],
-                            [{ text: "🎯 Wingo Hack", web_app: { url: "https://team19sachin.github.io/WingoPrediction/" } }]
+                            [{ text: "🎮 Mines Hack", web_app: { url: "https://www.minesprediction.site" } }],
+                            [{ text: "🎯 Wingo Hack", web_app: { url: "https://www.wingoprediction.site" } }]
                         ]
                     }
                 }
