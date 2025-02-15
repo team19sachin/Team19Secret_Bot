@@ -6,6 +6,7 @@ const bot = new Telegraf('7926331437:AAHEfNtLGMF-EpdliKQ4gMcb_xUzjgihGD4'); // �
 // 🔹 Aapke Telegram Channels (Apne Replace Karein)
 const channel1 = '@official_team_19';
 const channel2 = '@team19_4u';
+const channel2 = '@team19sachin';
 
 // 🔹 Start command – Image + Message + Buttons
 bot.start(async (ctx) => {
@@ -17,9 +18,10 @@ bot.start(async (ctx) => {
             caption: "👋 Welcome! Join both channels to continue.",
             reply_markup: {
                 inline_keyboard: [
-                    [{ text: "📢 JOIN CHANNEL 1", url: `https://t.me/${channel1.replace('@', '')}` }],
-                    [{ text: "📢 JOIN CHANNEL 2", url: `https://t.me/${channel2.replace('@', '')}` }],
-                    [{ text: "✅ VERIFY", callback_data: "verify" }]
+                    [{ text: "📢 𝗝𝗢𝗜𝗡 𝗖𝗛𝗔𝗡𝗡𝗘𝗟 𝟭", url: `https://t.me/${channel1.replace('@', '')}` }],
+                    [{ text: "📢 𝗝𝗢𝗜𝗡 𝗖𝗛𝗔𝗡𝗡𝗘𝗟 𝟮", url: `https://t.me/${channel2.replace('@', '')}` }],
+                    [{ text: "📢 𝗝𝗢𝗜𝗡 𝗖𝗛𝗔𝗡𝗡𝗘𝗟 𝟯", url: `https://t.me/${channel3.replace('@', '')}` }],
+                    [{ text: "✅ 𝗩𝗘𝗥𝗜𝗙𝗬", callback_data: "verify" }]
                 ]
             }
         }
@@ -39,19 +41,24 @@ bot.action('verify', async (ctx) => {
         const res2 = await ctx.telegram.getChatMember(channel2, userId);
         const isMember2 = ['member', 'administrator', 'creator'].includes(res2.status);
 
-        if (isMember1 && isMember2) {
-            // ✅ Agar user dono channels me hai, verify success message bhejo
+        // ✅ Check if User is in Channel 3
+        const res3 = await ctx.telegram.getChatMember(channel3, userId);
+        const isMember3 = ['member', 'administrator', 'creator'].includes(res3.status);
+
+        if (isMember1 && isMember2 && isMember3) {
+            // ✅ Agar user tino channels me hai, verify success message bhejo
             await ctx.replyWithPhoto(
                 'https://t.me/Only_4_photos/2', // 🔹 Yaha Apna Image URL Dalein
                 {
-                    caption: `🎉 *Congratulations, ${ctx.from.first_name}!* 🎉\n\n` +
-                             `✅ You have successfully verified your membership!\n` +
-                             `🚀 Now, choose a hack below and start winning! 🎮🔥`,
+                    caption: `🎉 *ᴄᴏɴɢʀᴀᴛᴜʟᴀᴛɪᴏɴꜱ, ${ctx.from.first_name}!* 🎉\n\n` +
+                             `✅ ʏᴏᴜ ʜᴀᴠᴇ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ᴠᴇʀɪꜰɪᴇᴅ!\n` +
+                             `🚀 ɴᴏᴡ, ᴄʜᴏᴏꜱᴇ ᴀ ʜᴀᴄᴋ ʙᴇʟᴏᴡ ᴀɴᴅ ꜱᴛᴀʀᴛ ᴡɪɴɴɪɴɢ! 🎮🔥`,
                     parse_mode: "Markdown",
                     reply_markup: {
                         inline_keyboard: [
-                            [{ text: "🎮 Mines Hack", web_app: { url: "https://www.minesprediction.site" } }],
-                            [{ text: "🎯 Wingo Hack", web_app: { url: "https://www.wingoprediction.site" } }]
+                            [{ text: "🎮 𝗠𝗜𝗡𝗘𝗦 𝗛𝗔𝗖𝗞", web_app: { url: "https://www.minesprediction.site" } }],
+                            [{ text: "🎯 𝗪𝗜𝗡𝗚𝗢 𝗛𝗔𝗖𝗞", web_app: { url: "https://www.wingoprediction.site" } }],
+                            [{ text: "🚀 𝗔𝗩𝗜𝗔𝗧𝗢𝗥 𝗛𝗔𝗖𝗞", web_app: { url: "https://www.modmaking.in" } }]
                         ]
                     }
                 }
@@ -59,8 +66,8 @@ bot.action('verify', async (ctx) => {
             
             
         } else {
-            // ❌ Agar user dono channels me nahi hai, warning do
-            await ctx.reply("⚠️ You must join **both** channels to continue!");
+            // ❌ Agar user tino channels me nahi hai, warning do
+            await ctx.reply("⚠️ ʏᴏᴜ ᴍᴜꜱᴛ ᴊᴏɪɴ ᴀʟʟ ᴄʜᴀɴɴᴇʟ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ");
         }
     } catch (error) {
         console.error("Verification Error:", error);
